@@ -32,7 +32,7 @@ class ResultViewer extends Component {
           this.setState({Name: state.SearchResult[nextTodoId].Name})
           this.setState({Rate: state.SearchResult[nextTodoId].Rate})
           this.setState({Addr: state.SearchResult[nextTodoId].Addr})
-          console.log("subscribe: ",nextTodoId)
+          //console.log("subscribe: ",nextTodoId)
           }
         }
         
@@ -60,7 +60,7 @@ onIncrement = ()=>{
     document.getElementById("ui").appendChild(li);
         }else {
             alert("INCREMENTLIST OUT OF RANGE !")
-            console.log("Increment: ",nextTodoId)
+            //console.log("Increment: ",nextTodoId)
         }
     }
     }
@@ -86,7 +86,7 @@ onDecrement = ()=>{
     render() {
       return (
         <div>
-            <h2>Result</h2>
+            <h2>ResultDetail</h2>
             <ui id="ui">
             
             </ui>

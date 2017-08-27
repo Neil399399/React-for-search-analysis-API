@@ -1,7 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
 //import Counter  from './counter';
-//import SearchBar from './SearchBar.js';
 import React, { Component } from 'react';
 import { createStore } from 'redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -13,6 +12,7 @@ const initialState ={
   Counter:0,
   TODOID:0,
   SearchResult:[],
+  SearchAnalysisResult:[],
   Loading: Boolean,
   Status:"",
   OpenPage: ""
@@ -43,6 +43,13 @@ const counter = (state,action) => {
     return Object.assign({}, state, {
       ...state, 
       SearchResult: action.data,Loading:false, Status:"hide"
+      })
+
+    case 'INPUTANALYSISRESULT':
+    //console.log("INPUTDATA CALLED")
+    return Object.assign({}, state, {
+      ...state, 
+      SearchAnalysisResult: action.data,Loading:false, Status:"hide"
       })
       
     case 'INCREMENTLIST':

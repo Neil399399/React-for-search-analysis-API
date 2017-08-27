@@ -2,8 +2,6 @@ import React from 'react';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
-import ReactDOM from 'react-dom';
-import App from './App';
 
 
 export default class DrawerUndocked extends React.Component {
@@ -18,21 +16,18 @@ export default class DrawerUndocked extends React.Component {
   handleToSearchPage =()=> {
     this.setState({open: false});
     let store = this.props.store;
-    const state = store.getState()
     store.dispatch({type:'TurnSearchPage'})
   }
 
   handleToAnalysisPage =()=> {
     this.setState({open: false});
     let store = this.props.store;
-    const state = store.getState()
     store.dispatch({type:'TurnAnalysisPage'})
   }
   
   handleToSearchAnalysisPage =()=> {
     this.setState({open: false});
     let store = this.props.store;
-    const state = store.getState()
     store.dispatch({type:'TurnSearch-AnalysisPage'})
   }
 
@@ -49,7 +44,7 @@ export default class DrawerUndocked extends React.Component {
           open={this.state.open}
           onRequestChange={(open) => this.setState({open})}
         >
-        <h3>TITLE</h3>
+        <h3>WELCOME</h3>
           <MenuItem onClick={this.handleToSearchPage}>SEARCH</MenuItem>
           <MenuItem onClick={this.handleToAnalysisPage}>ANALYSIS</MenuItem>
           <MenuItem onClick={this.handleToSearchAnalysisPage}>SEARCH - ANALYSIS</MenuItem>

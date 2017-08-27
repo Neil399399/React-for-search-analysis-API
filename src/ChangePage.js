@@ -1,11 +1,16 @@
 import React  from 'react';
-import RefreshIndicator from 'material-ui/RefreshIndicator';
-import TextField from 'material-ui/TextField';
 import DrawerUndocked from'./Drawer';
 import ResultViewer from './ResultViewer';
-import SearchBarTEST from './HOCsearch';
+import SearchBar from './SearchBar';
+import SearchAnalysis from './search-analysis';
+import Analysis from './Analysis';
 import HOC1 from './High-Order';
-const WrappedSearch = HOC1(SearchBarTEST ,{...this.props});
+import HOC2 from './High-Order2';
+import HOC3 from './High-Order3';
+
+const WrappedSearch = HOC1(SearchBar ,{...this.props});
+const WrappedSearchAnalysis = HOC2(SearchAnalysis ,{...this.props});
+const WrappedAnalysis = HOC3(Analysis ,{...this.props});
 class  ChangePage extends React.Component {
     
     constructor(props) {
@@ -28,7 +33,7 @@ class  ChangePage extends React.Component {
   }
   
 
-  /**Function */
+  /**PAGECHANGE */
   turnpage() {
     if (this.state.open === "searchpage"){
         return(
@@ -37,10 +42,14 @@ class  ChangePage extends React.Component {
             <ResultViewer {...this.props}/></div>);
         }
     if (this.state.open === "analysispage"){
-        return(<div><ResultViewer {...this.props}/></div>);
+        return(
+        <div>
+          <WrappedAnalysis {...this.props}/></div>);
         }
     if (this.state.open === "search-analysispage"){
-        return(<div><ResultViewer {...this.props}/></div>);
+        return(
+        <div>
+          <WrappedSearchAnalysis {...this.props}/></div>);
         }    
     
       }

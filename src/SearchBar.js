@@ -9,14 +9,20 @@ class SearchBar extends Component {
         this.search = this.search.bind(this);
     }
 
-/**Function */
 
+
+componentWillUnMount = function(){
+  this.search()
+}
+
+
+/**Function */
   search() {
     let store = this.props.store;
     store.dispatch({type:'Search Loading'})
     /**fetch get */
-    //const url = 'http://d82253f9.ngrok.io/search-mock';
-      const url = 'http://d82253f9.ngrok.io/search?APIKEY=AIzaSyCHczxUWw4cq6mnEYqWKvpUkfMF8A6vNMI&KEYWORD=coffee&LAT=25.0348&LNG=121.5678';
+    const url = 'http://9de949c7.ngrok.io/search-mock';
+      //const url = 'http://75fabb19.ngrok.io/search?APIKEY=AIzaSyCHczxUWw4cq6mnEYqWKvpUkfMF8A6vNMI&KEYWORD=coffee&LAT=25.0348&LNG=121.5678';
       //const url = 'http://d82253f9.ngrok.io/search?APIKEY=AIzaSyCHczxUWw4cq6mnEYqWKvpUkfMF8A6vNMI&KEYWORD='+this.props.keyword+'&LAT='+this.props.lat+'&LNG='+this.props.lng;
     fetch(url,{
       method:"get",

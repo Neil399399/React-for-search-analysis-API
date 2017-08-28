@@ -18,27 +18,29 @@ class ResultViewer extends Component {
             Rate:[],
             Addr:[]
           }
-        let store = this.props.store;
-        store.subscribe(() =>{
-         // console.log("state changed")
-          const state = store.getState()
-          // need chack 
-         
-            if (nextTodoId < 0){
-            alert("No Data to show !!")
-              }else {
-                if (nextTodoId < state.SearchResult.length){
-          this.setState({INT: state.TODOID})
-          this.setState({Name: state.SearchResult[nextTodoId].Name})
-          this.setState({Rate: state.SearchResult[nextTodoId].Rate})
-          this.setState({Addr: state.SearchResult[nextTodoId].Addr})
-          //console.log("subscribe: ",nextTodoId)
-          }
-        }
-        
-        })
-        }
 
+        }
+/** WillMount*/
+componentWillMount = function(){
+    let store = this.props.store;
+    this.unsubscribe = store.subscribe(() =>{
+         // console.log("state changed")
+        const state = store.getState()
+         // need chack 
+        if (nextTodoId < 0){
+            alert("No Data to show !!")
+         }else {
+             if (nextTodoId < state.SearchResult.length){
+            this.setState({INT: state.TODOID,Name: state.SearchResult[nextTodoId].Name,Rate: state.SearchResult[nextTodoId].Rate,Addr: state.SearchResult[nextTodoId].Addr})
+            }
+            }
+            
+    })
+}
+/**WillUnmount */
+componentWillUnmount = function(){
+        this.unsubscribe()        
+}
 
 onIncrement = ()=>{
     let store = this.props.store;

@@ -71,7 +71,7 @@ const counter = (state,action) => {
 
     case 'TurnSearchPage':
     return Object.assign({}, state, {
-      ...state,OpenPage:"searchpage"
+      ...state,OpenPage:"searchpage",SearchResult:[]
       })
     case 'TurnAnalysisPage':
     return Object.assign({}, state, {

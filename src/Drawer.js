@@ -46,7 +46,7 @@ export default class DrawerUndocked extends React.Component {
         >
         <h3>WELCOME</h3>
           <MenuItem onClick={this.handleToSearchPage}>SEARCH</MenuItem>
-          <MenuItem onClick={this.handleToAnalysisPage}>ANALYSIS</MenuItem>
+          {/* <MenuItem onClick={this.handleToAnalysisPage}>ANALYSIS</MenuItem> */}
           <MenuItem onClick={this.handleToSearchAnalysisPage}>SEARCH - ANALYSIS</MenuItem>
         </Drawer>
       </div>

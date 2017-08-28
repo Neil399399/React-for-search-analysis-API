@@ -31,24 +31,27 @@ const HOC2 = (Component) => class extends React.Component {
           word3:'',
           open: false,
       }
-      let store = this.props.store;
-  
-    store.subscribe(() =>{
-       const state = store.getState()
-          //console.log(state.SearchAnalysisResult)
-      
-       if (state.Loading===true){
-         this.setState({status: state.Status}) 
-       }
-       if (state.Loading===false){
-        this.setState({status: state.Status})
-        this.setState({result:state.SearchAnalysisResult})
-       
-      }
-    })  
   }
-
+/**WillMount */
+componentWillMount = function(){
+  let store = this.props.store;
+  this.unsubscribe = store.subscribe(() =>{
+    const state = store.getState()
+      //  console.log(state.SearchAnalysisResult)
+    if (state.Loading===true){
+      this.setState({status: state.Status}) 
+    }
+    if (state.Loading===false){
+     this.setState({status: state.Status,result:state.SearchAnalysisResult})
+   }
+ })  
+}
+/**WillUnMount */
+componentWillUnmount =function(){
+  this.unsubscribe()
   
+}
+
   /**Handle */
   handleChange1 = (event) => { 
     this.setState({keyword: event.target.value})
@@ -87,7 +90,7 @@ const HOC2 = (Component) => class extends React.Component {
         />,
       ];
       return (
-        <div class ="SearchAnalysisBar">
+        <div className ="SearchAnalysisBar">
           <h2>Search-Analysis</h2>
             <TextField hintText="KEYWORD"  onChange={this.handleChange1}/>
             <br></br>

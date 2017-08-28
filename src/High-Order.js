@@ -22,24 +22,28 @@ const HOC1 = (Component) => class extends React.Component {
           result: null,
           status:"hide",  
       }
-      let store = this.props.store;
-  
-    store.subscribe(() =>{
-       const state = store.getState()
-     console.log(state.SearchResult)
-      
-       if (state.Loading===true){
-         this.setState({status: state.Status})
-        
-       }
-       if (state.Loading===false){
-        this.setState({status: state.Status})
-       
-      }
-    })  
   }
+/** WillMount*/
+componentWillMount = function(){
+  let store = this.props.store; 
+  this.unsubscribe = store.subscribe(() =>{
+    const state = store.getState()
+   
+    if (state.Loading===true){
+      this.setState({status: state.Status})
+     
+    }
+    if (state.Loading===false){
+     this.setState({status: state.Status})
+    
+   }
+ }) 
 
-  
+}
+/**WillUnMount */
+componentWillUnmount = function(){
+  this.unsubscribe()    
+}
   /**Function */
   handleChange1 = (event) => { 
     this.setState({keyword: event.target.value})
@@ -53,7 +57,7 @@ const HOC1 = (Component) => class extends React.Component {
 
     render() {
       return (
-        <div class ="SearchBar">
+        <div className ="SearchBar">
           <h2>Search</h2>
             <TextField hintText="KEYWORD"  onChange={this.handleChange1}/>
             <br></br>

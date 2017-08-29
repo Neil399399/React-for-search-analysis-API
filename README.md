@@ -1,6 +1,6 @@
 # React-for-search-analysis-API
 ## The Client of Search-Analysis API by using React and Redux
-----
+
 ## Downloads
 **Node.js(https://nodejs.org/en/)**
 

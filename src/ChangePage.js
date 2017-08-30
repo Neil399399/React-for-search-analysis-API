@@ -5,12 +5,11 @@ import SearchBar from './SearchBar';
 import SearchAnalysis from './search-analysis';
 import HOC1 from './High-Order';
 import HOC2 from './High-Order2';
-// import HOC3 from './High-Order3';
-// import Analysis from './Analysis';
+
 
 const WrappedSearch = HOC1(SearchBar ,{...this.props});
 const WrappedSearchAnalysis = HOC2(SearchAnalysis ,{...this.props});
-// const WrappedAnalysis = HOC3(Analysis ,{...this.props});
+
 class  ChangePage extends React.Component {
     
     constructor(props) {
@@ -26,55 +25,43 @@ componentWillMount = function() {
        const state = store.getState()
        if (state.OpenPage==="searchpage"){
             this.setState({open:state.OpenPage})    
-       }
-      //  if (state.OpenPage==="analysispage"){
-      //       this.setState({open:state.OpenPage})
-      //  }
+      }
+
        if (state.OpenPage==="search-analysispage"){
             this.setState({open:state.OpenPage})
-       }
+      }
     })  
 }
 /**WillUnmount */
-componentWillUnMount () {
+componentWillUnmount () {
   this.unsubscribe()
 }
 
   /**PAGECHANGE */
-  turnpage() {
-    if (this.state.open === "searchpage"){
-        return(
-        <div>
+turnpage() {
+  if (this.state.open === "searchpage"){
+      return(
+      <div>
             <WrappedSearch {...this.props}/>
             <ResultViewer {...this.props}/></div>);
-        }
-    // if (this.state.open === "analysispage"){
-    //     return(
-    //     <div>
-    //       <WrappedAnalysis {...this.props}/></div>);
-    //     }
-    if (this.state.open === "search-analysispage"){
-        return(
-        <div>
-          <WrappedSearchAnalysis {...this.props}/>
-          </div>);
-        }    
-    
       }
-    
-    
-        
+  if (this.state.open === "search-analysispage"){
+     return(
+      <div>
+        <WrappedSearchAnalysis {...this.props}/>
+        </div>);
+      }    
+}
 
-
-    render() {
+render() {
       return (
         <div className =" checkdrawer">
           < DrawerUndocked  {...this.props}/>
           {this.turnpage()}
-        </div>
-      );
-    }
+      </div>
+    );
   }
+}
   
-  export default ChangePage;
+export default ChangePage;
   

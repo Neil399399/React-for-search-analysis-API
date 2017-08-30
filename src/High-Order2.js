@@ -31,6 +31,10 @@ const HOC2 = (Component) => class extends React.Component {
           word3:'',
           open: false,
       }
+      /**bind */
+      this.onTextChange=this.onTextChange.bind(this)
+      this.handleOpen=this.handleOpen.bind(this)
+      this.handleClose=this.handleClose.bind(this)
   }
 /**WillMount */
 componentWillMount = function(){
@@ -53,29 +57,32 @@ componentWillUnmount =function(){
 }
 
   /**Handle */
-  handleChange1 = (event) => { 
-    this.setState({keyword: event.target.value})
+  onTextChange(event) {
+    if (event.target.id==="keyword"){
+      this.setState({keyword: event.target.value})
+    }
+    if (event.target.id==="lat"){
+      this.setState({lat: event.target.value})
+    }
+    if (event.target.id==="lng"){
+      this.setState({lng: event.target.value})
+    }
+    if (event.target.id==="word1"){
+      this.setState({word1: event.target.value})
+    }
+    if (event.target.id==="word2"){
+      this.setState({word2: event.target.value})
+    }
+    if (event.target.id==="word3"){
+      this.setState({word3: event.target.value})
+    }
   }
-  handleChange2 = (event) => { 
-    this.setState({lat: event.target.value})
-  }
-  handleChange3 = (event) => { 
-    this.setState({lng: event.target.value})
-  }
-  handleChangeword1 = (event) => { 
-    this.setState({word1: event.target.value})
-  }
-  handleChangeword2 = (event) => { 
-    this.setState({word2: event.target.value})
-  }
-  handleChangeword3 = (event) => { 
-    this.setState({word3: event.target.value})
-  }
-  handleOpen = () => {
+
+  handleOpen(){
     this.setState({open: true});
   };
 
-  handleClose = () => {
+  handleClose(){
     this.setState({open: false});
   };
 
@@ -92,18 +99,18 @@ componentWillUnmount =function(){
       return (
         <div className ="SearchAnalysisBar">
           <h2>Search-Analysis</h2>
-            <TextField hintText="KEYWORD"  onChange={this.handleChange1}/>
+            <TextField hintText="KEYWORD" id="keyword"  onChange={this.onTextChange}/>
             <br></br>
-            <TextField hintText="LAT"  onChange={this.handleChange2}/>
+            <TextField hintText="LAT"  id="lat" onChange={this.onTextChange}/>
             <br></br>
-            <TextField hintText="LNG"  onChange={this.handleChange3}/>
+            <TextField hintText="LNG"  id="lng" onChange={this.onTextChange}/>
             <br></br>
             <h2> Analysis-word</h2>
-            <TextField hintText="ANALYSIS_WORD1"  onChange={this.handleChangeword1}/>
+            <TextField hintText="ANALYSIS_WORD1"  id="word1" onChange={this.onTextChange}/>
             <br></br>
-            <TextField hintText="ANALYSIS_WORD2"  onChange={this.handleChangeword2}/>
+            <TextField hintText="ANALYSIS_WORD2"  id="word2" onChange={this.onTextChange}/>
             <br></br>
-            <TextField hintText="ANALYSIS_WORD3"  onChange={this.handleChangeword3}/>
+            <TextField hintText="ANALYSIS_WORD3"  id="word3s" onChange={this.onTextChange}/>
             <br></br>
            <RefreshIndicator percentage={5} size={50} left={0} top={0} loadingColor="#FF9800" status={this.state.status} style={style.refresh}/>
            < br></br>
@@ -116,7 +123,6 @@ componentWillUnmount =function(){
               modal={false}
               open={this.state.open}
               onRequestClose={this.handleClose}>
-                {/* ANSWER: */}
                 {this.state.result}
              </Dialog> 
            

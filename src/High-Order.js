@@ -22,7 +22,10 @@ const HOC1 = (Component) => class extends React.Component {
           result: null,
           status:"hide",  
       }
+      //bind
+      this.onTextChange = this.onTextChange.bind(this)
   }
+
 /** WillMount*/
 componentWillMount = function(){
   let store = this.props.store; 
@@ -44,26 +47,28 @@ componentWillMount = function(){
 componentWillUnmount = function(){
   this.unsubscribe()    
 }
-  /**Function */
-  handleChange1 = (event) => { 
+
+onTextChange(event) {
+  if (event.target.id==="keyword"){
     this.setState({keyword: event.target.value})
   }
-  handleChange2 = (event) => { 
-    this.setState({lat: event.target.value})
-  }
-  handleChange3 = (event) => { 
+  if (event.target.id==="lng"){
     this.setState({lng: event.target.value})
   }
+  if (event.target.id==="lat"){
+    this.setState({lat: event.target.value})
+  }
+}
 
-    render() {
+ render() {
       return (
         <div className ="SearchBar">
           <h2>Search</h2>
-            <TextField hintText="KEYWORD"  onChange={this.handleChange1}/>
+            <TextField hintText="KEYWORD" id="keyword" onChange={this.onTextChange}/>
             <br></br>
-            <TextField hintText="LAT"  onChange={this.handleChange2}/>
+            <TextField hintText="LAT" id="lat" onChange={this.onTextChange}/>
             <br></br>
-            <TextField hintText="LNG"  onChange={this.handleChange3}/>
+            <TextField hintText="LNG" id="lng" onChange={this.onTextChange}/>
             <br></br>
            <RefreshIndicator percentage={5} size={50} left={0} top={0} loadingColor="#FF9800" status={this.state.status} style={style.refresh}/>
            < br></br>

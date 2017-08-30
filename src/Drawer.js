@@ -9,23 +9,24 @@ export default class DrawerUndocked extends React.Component {
   constructor(props) {
     super(props);
     this.state = {open: false};
+
+    this.handleToggle = this.handleToggle.bind(this)
+    this.handleToSearchpage = this.handleToSearchpage.bind(this)
+    this.handleToSearchAnalysispage = this.handleToSearchAnalysispage.bind(this)
   }
 
-  handleToggle = () => this.setState({open: !this.state.open});
 
-  handleToSearchPage =()=> {
+  handleToggle () {
+    this.setState({open: !this.state.open})
+  };
+
+  handleToSearchpage (){
     this.setState({open: false});
     let store = this.props.store;
     store.dispatch({type:'TurnSearchPage'})
-  }
-
-  handleToAnalysisPage =()=> {
-    this.setState({open: false});
-    let store = this.props.store;
-    store.dispatch({type:'TurnAnalysisPage'})
-  }
+  };
   
-  handleToSearchAnalysisPage =()=> {
+  handleToSearchAnalysispage() {
     this.setState({open: false});
     let store = this.props.store;
     store.dispatch({type:'TurnSearch-AnalysisPage'})
@@ -35,7 +36,7 @@ export default class DrawerUndocked extends React.Component {
     return (
       <div>
         <RaisedButton
-          label="Open Drawer"
+          label="push me "
           onClick={this.handleToggle}
         />
         <Drawer
@@ -45,9 +46,8 @@ export default class DrawerUndocked extends React.Component {
           onRequestChange={(open) => this.setState({open})}
         >
         <h3>WELCOME</h3>
-          <MenuItem onClick={this.handleToSearchPage}>SEARCH</MenuItem>
-          {/* <MenuItem onClick={this.handleToAnalysisPage}>ANALYSIS</MenuItem> */}
-          <MenuItem onClick={this.handleToSearchAnalysisPage}>SEARCH - ANALYSIS</MenuItem>
+          <MenuItem onClick={this.handleToSearchpage}>SEARCH</MenuItem>
+          <MenuItem onClick={this.handleToSearchAnalysispage}>SEARCH - ANALYSIS</MenuItem>
         </Drawer>
       </div>
     );

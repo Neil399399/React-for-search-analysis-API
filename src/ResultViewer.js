@@ -18,8 +18,12 @@ class ResultViewer extends Component {
             Rate:[],
             Addr:[]
           }
+          //bind
+          this.onIncrement = this.onIncrement.bind(this)
+          this.onDecrement = this.onDecrement.bind(this)
+        //   this.onListChange = this.onListChange.bind(this)
 
-        }
+    }
 /** WillMount*/
 componentWillMount = function(){
     let store = this.props.store;
@@ -42,7 +46,13 @@ componentWillUnmount = function(){
         this.unsubscribe()        
 }
 
-onIncrement = ()=>{
+// onListChange(event){
+// console.log(event.target)
+// }
+
+
+
+onIncrement(){
     let store = this.props.store;
     const state = store.getState()
     if (state.SearchResult.length ===0){
@@ -67,7 +77,7 @@ onIncrement = ()=>{
     }
     }
     
-onDecrement = ()=>{
+onDecrement(){
     let store = this.props.store;
     const state = store.getState()
     if (state.SearchResult.length ===0){

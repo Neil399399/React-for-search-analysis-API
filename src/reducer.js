@@ -3,6 +3,8 @@ import { createStore } from 'redux';
 const initialState ={
     Counter:0,
     TODOID:0,
+    search:Boolean,
+    httpRequest:[],
     SearchResult:[],
     SearchAnalysisResult:[],
     Loading: Boolean,
@@ -55,7 +57,17 @@ const initialState ={
       return Object.assign({}, state, {
         ...state,TODOID:action.id
         })
-        
+    
+        case 'Search':
+      return Object.assign({}, state, {
+        ...state,search:true,httpRequest:action.data
+        })
+
+        case 'clearRequest':
+        return Object.assign({}, state, {
+          ...state,httpRequest:[],search:false
+          })
+
       case 'Search Loading':
       return Object.assign({}, state, {
         ...state,Loading:true, Status:"loading"
@@ -81,5 +93,5 @@ const initialState ={
   }
   /**CreateStore */
   const store = createStore(action,initialState);
-  
+
 export default store

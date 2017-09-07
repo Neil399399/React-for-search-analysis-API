@@ -2,44 +2,26 @@ import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 
 
-class SearchBar extends Component {
-    constructor(props) {
-        super(props);
-       
-        this.search = this.search.bind(this);
-    }
 
-
-
-componentWillUnMount = function(){
-  this.search()
+class SearchBar extends Component  {
+constructor(props) {
+    super(props);
+  
+    //bind
+    this.search= this.search.bind(this)
 }
+  search(){
+    let store = this.props.store;
+    store.dispatch({type:'Search', data:[this.props.keyword,this.props.lng,this.props.lat]})
+    console.log("search start")
+    this.state = store.getState()
+    console.log("type search =",this.state.search)
+    
+
+  }
 
 
 /**Function */
-  search() {
-    let store = this.props.store;
-    store.dispatch({type:'Search Loading'})
-    /**fetch get */
-    const url = 'http://9e18597a.ngrok.io/search-mock';
-      //const url = 'http://75fabb19.ngrok.io/search?APIKEY=AIzaSyCHczxUWw4cq6mnEYqWKvpUkfMF8A6vNMI&KEYWORD=coffee&LAT=25.0348&LNG=121.5678';
-      //const url = 'http://d82253f9.ngrok.io/search?APIKEY=AIzaSyCHczxUWw4cq6mnEYqWKvpUkfMF8A6vNMI&KEYWORD='+this.props.keyword+'&LAT='+this.props.lat+'&LNG='+this.props.lng;
-    fetch(url,{
-      method:"get",
-    })
-      .then( (response) => {
-        response.json().then( (json)=>{
-          store.dispatch({type:'INPUTDATA', data: json})
-          console.log("response OK");
-          
-          
-        })     
-      })
-      .catch( (error) => {
-        console.log(error);
-      });  
-  }
-
     render () {
       return (
         <RaisedButton label="Search !!"  primary={true}  onClick={this.search} />

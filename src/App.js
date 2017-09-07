@@ -2,14 +2,16 @@ import logo from './logo.svg';
 import './App.css';
 //import Counter  from './counter';
 import React, { Component } from 'react';
-import { createStore } from 'redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import  ChangePage from './ChangePage';
 import  store from './reducer';
+import  APIManager from './SearchFunction';
 
+var apiManager = new APIManager(store, "http://73550c9e.ngrok.io/")
+console.log("apiManager start !",apiManager)
+// apiManager.getsearchfunc()
 
 class App extends Component {
-
   render() {
     return (
       <MuiThemeProvider>

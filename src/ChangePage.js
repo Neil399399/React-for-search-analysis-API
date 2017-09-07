@@ -7,7 +7,7 @@ import HOC1 from './High-Order';
 import HOC2 from './High-Order2';
 
 
-const WrappedSearch = HOC1(SearchBar ,{...this.props});
+const WrappedSearch = HOC1(SearchBar,{...this.props});
 const WrappedSearchAnalysis = HOC2(SearchAnalysis ,{...this.props});
 
 class  ChangePage extends React.Component {
@@ -57,6 +57,7 @@ render() {
       return (
         <div className =" checkdrawer">
           < DrawerUndocked  {...this.props}/>
+          
           {this.turnpage()}
       </div>
     );
